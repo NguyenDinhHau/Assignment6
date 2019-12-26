@@ -1,13 +1,64 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdint.h>
-#include"sourcefile.h"
 
 uint8_t assignment3[20] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
-uint32_t next[20] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
+uint8_t next[20] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 
+/* define to conflict */
 uint32_t AddLinkedList(uint32_t head,uint32_t position, uint32_t value );
+uint32_t enterElementOfArr(uint32_t head);
+void PrintSwap(uint32_t head);
+void printElementofArr(uint8_t *ptr);
+uint32_t DelHead(uint32_t head);
+uint32_t DelValue(uint32_t head, uint32_t position);
+uint32_t delElementOfArr(uint32_t head);
 
+int main()
+{
+	uint32_t head = 0xff;
+	uint32_t choose_main =0;
+	uint32_t choose_3 = 0;
+	
+	while(1)
+	{
+	printf("\n Enter 1: Enter a value to array ");
+	printf("\n Enter 2: Delete a value from array ");
+	printf("\n Enter 3: Print values from array ");
+	printf("\n Enter 4: Exit ");
+	printf("\n Enter your choose: ");
+	scanf("%d",&choose_main);
+	if(choose_main == 1)
+	{
+		head = enterElementOfArr(head);
+	}
+	if(choose_main == 2)
+	{
+		head = delElementOfArr(head);
+	}
+	if(choose_main == 3)
+	{
+		printf("\n Enter 1: Print unsorted array ");
+		printf("\n Enter 2: Print sorted array ");
+		printf("\n Enter number you want: ");
+		scanf("%d",&choose_3);
+		if(choose_3 == 1)
+		{
+			printElementofArr(assignment3);
+		}
+		if(choose_3 == 2)
+		{
+			PrintSwap(head);
+		}
+	}
+	if(choose_main == 4)
+	{
+		exit(1);
+	}
+}
+	return 0;
+}
+/* add a element to array */
 uint32_t enterElementOfArr(uint32_t head)
 {
 	uint32_t i = 0;
@@ -21,7 +72,7 @@ uint32_t enterElementOfArr(uint32_t head)
 		{
 			if(assignment3[position] == 0xff)
 			{
-				printf("\nEnter value of Array ");
+				printf("\nEnter value of Array: ");
 				scanf("%d",&values);
 				if(values  >= 0 && values<= 100 )
 				{
@@ -65,6 +116,7 @@ uint32_t enterElementOfArr(uint32_t head)
 	
 	return head;
 }
+/* print linked list when it was swapped */
 void PrintSwap(uint32_t head)
 {
 	uint32_t current = head;
@@ -74,6 +126,7 @@ void PrintSwap(uint32_t head)
 		current = next[current];
 	}
 }
+/* show array */
 void printElementofArr(uint8_t *ptr)
 {
 	uint32_t i=0;
@@ -87,6 +140,7 @@ void printElementofArr(uint8_t *ptr)
 	}
 
 }
+/* delete a first node of linked list */
 uint32_t DelHead(uint32_t head)
 {
 	if(head == 0xff)
@@ -96,17 +150,16 @@ uint32_t DelHead(uint32_t head)
 	else
 	{
 		head = next[head];
-		next[head] = '\0';
 	}
 	
 	return head;
 }
-
+/* delete a node of linked list when you known value*/
 uint32_t DelValue(uint32_t head, uint32_t position)
 {
 	uint32_t current = head;
 	
-	if(position == 0||head == 0xff)
+	if(position == 0||head == 0xff||head == position)
 	{
 		head = DelHead(head);
 	}
@@ -117,10 +170,11 @@ uint32_t DelValue(uint32_t head, uint32_t position)
 			current = next[current];
 		}
 		next[current] = next[position];
-		next[position] = '\0';
+		next[position] = 0xff;
 	}
 	return head;
 }
+/* delete a element of array */
 uint32_t delElementOfArr(uint32_t head)
 {
 	uint32_t values = 0;
@@ -164,7 +218,7 @@ uint32_t delElementOfArr(uint32_t head)
 	
 	return head;
 }
-
+/* add a note to linked list */
 uint32_t AddLinkedList(uint32_t head,uint32_t position, uint32_t value )
 {
 	uint32_t cur =0;
@@ -202,50 +256,4 @@ uint32_t AddLinkedList(uint32_t head,uint32_t position, uint32_t value )
 		}
 	}
 	return head;
-}
-int main(){
-	
-	uint32_t head = 0xff;
-	uint32_t choose_main =0;
-	uint32_t choose_3 = 0;
-	
-	while(1)
-	{
-		
-	printf("\n Enter 1: Enter a value to array ");
-	printf("\n Enter 2: Delete a value from array ");
-	printf("\n Enter 3: Print values from array ");
-	printf("\n Enter 4: Exit ");
-	printf("\n Enter your choose: ");
-	scanf("%d",&choose_main);
-	if(choose_main == 1)
-	{
-		head = enterElementOfArr(head);
-			printf("%d",head);
-	}
-	if(choose_main == 2)
-	{
-		head = delElementOfArr(head);
-	}
-	if(choose_main == 3)
-	{
-		printf("\n Enter 1: Print unsorted array ");
-		printf("\n Enter 2: Print sorted array ");
-		printf("\n Enter number you want");
-		scanf("%d",&choose_3);
-		if(choose_3 == 1)
-		{
-			printElementofArr(assignment3);
-		}
-		if(choose_3 == 2)
-		{
-			PrintSwap(head);
-		}
-	}
-	if(choose_main == 4)
-	{
-		exit(1);
-	}
-}
-	return 0;
 }
