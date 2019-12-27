@@ -157,9 +157,10 @@ uint32_t DelHead(uint32_t head)
 /* delete a node of linked list when you known value*/
 uint32_t DelValue(uint32_t head, uint32_t position)
 {
-	uint32_t current = head;
+	uint32_t current = 0;
+	current = head;
 	
-	if(position == 0||head == 0xff||head == position)
+	if(head == 0xff||head == position)
 	{
 		head = DelHead(head);
 	}
