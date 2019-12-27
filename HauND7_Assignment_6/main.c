@@ -5,14 +5,14 @@
 uint8_t assignment3[20] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 uint8_t next[20] = {0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff,0xff};
 
-/* define to conflict */
-uint32_t AddLinkedList(uint32_t head,uint32_t position, uint32_t value );
+/* define to avoid conflict */
 uint32_t enterElementOfArr(uint32_t head);
-void PrintSwap(uint32_t head);
-void printElementofArr(uint8_t *ptr);
+uint32_t AddLinkedList(uint32_t head,uint32_t position, uint32_t value );
+uint32_t delElementOfArr(uint32_t head);
 uint32_t DelHead(uint32_t head);
 uint32_t DelValue(uint32_t head, uint32_t position);
-uint32_t delElementOfArr(uint32_t head);
+void printElementofArr(uint8_t *ptr);
+void PrintSwap(uint32_t head);
 
 int main()
 {
@@ -32,11 +32,11 @@ int main()
 	{
 		head = enterElementOfArr(head);
 	}
-	if(choose_main == 2)
+	else if(choose_main == 2)
 	{
 		head = delElementOfArr(head);
 	}
-	if(choose_main == 3)
+	else if(choose_main == 3)
 	{
 		printf("\n Enter 1: Print unsorted array ");
 		printf("\n Enter 2: Print sorted array ");
@@ -51,9 +51,12 @@ int main()
 			PrintSwap(head);
 		}
 	}
-	if(choose_main == 4)
+	else if(choose_main == 4)
 	{
 		exit(1);
+	}
+	else{
+		printf(" \n WARNING. Your number is wrong!");
 	}
 }
 	return 0;
