@@ -103,6 +103,7 @@ void DelAt(int position)
         {
             printf("%s \n",pre->values.nameStudent);
             pre->next = current->next;
+            free(current);
             printf("%s \n",pre->values.nameStudent);
             printf("delete successful \n");
         }
@@ -120,7 +121,7 @@ void EnterStudent()
      printf("Enter code student. Please! \n ");
      scanf("%d",&code);
      
-     if(!CheckCode(code))s
+     if(!CheckCode(code))
      {
          node = CreateNode();
          student.codeStudent = code;
